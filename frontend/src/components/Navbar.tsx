@@ -55,7 +55,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <div class="block sm:hidden">
+            <div class="block sm:hidden z-10">
                 <div class="absolute flex top-4 right-4 gap-x-4 w-fit h-fit font-ibm text-xl">
                     <a class="p-1 hover:shadow-lg transition duration-300"
                        href="/settings">{getUsername()}</a>
@@ -65,22 +65,22 @@ const Navbar = () => {
                     "opacity-100 pointer-events-auto": showMenu(),
                     "opacity-0 pointer-events-none": !showMenu()
                 })}>
-                    <button type={"button"} class="absolute top-4 right-8" onClick={() => setShowMenu(!showMenu())}><FiX class="size-8"/></button>
+                    <button type={"button"} class="absolute top-4 right-4" onClick={() => setShowMenu(!showMenu())}><FiX class="size-8"/></button>
                     <div class="absolute flex top-1/4 justify-self-center inset-x-0 flex-col gap-y-4">
                         <a class="font-code p-1 text-2xl w-fit hover:shadow-lg transition duration-300"
                            href="/">Home</a>
                         <a class="font-code p-1 text-2xl w-fit hover:shadow-lg transition duration-300"
-                           href="keyclub/">Key Club</a>
+                           href="/keyclub">Key Club</a>
                         <a class="font-code p-1 text-2xl w-fit hover:shadow-lg transition duration-300"
-                           href="accesskeys/">Access Keys</a>
+                           href="/accesskeys">Access Keys</a>
                         <Show when={context.getUserData() && context.getUserData()["groups"].includes(groupName)}>
                             <a class="font-code p-1 text-2xl w-fit hover:shadow-lg transition duration-300"
                                href="/keyclub/log">Key Club Logging</a>
                         </Show>
                         <a class={clsx("font-ibm p-1 text-2xl w-fit hover:shadow-lg transition duration-300", {"hidden": getUsername()})}
-                           href="register/">register</a>
+                           href="/register">register</a>
                         <a class={clsx("font-ibm p-1 text-2xl w-fit hover:shadow-lg transition duration-300", {"hidden": getUsername()})}
-                           href="login/">login</a>
+                           href="/login">login</a>
                         <a class={clsx("font-ibm p-1 text-2xl w-fit hover:shadow-lg transition duration-300", {"hidden": !getUsername()})}
                            href="#" onClick={context.logout}>logout</a>
                     </div>

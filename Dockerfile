@@ -22,5 +22,12 @@ WORKDIR /backend
 RUN pipenv --python /usr/bin/python3 && pipenv install
 # collects static files and creates key club bot group
 RUN pipenv run python3 manage.py collectstatic --no-input
+
+# removes unecessary dirs to save space
+RUN rm -rf ./dist
+WORKDIR /
+RUN rm -rf ./frontend
+
+WORKDIR /backend
 # creates a gunicorn server bind to 0.0.0.0:8000 with 3 workers
 CMD ["pipenv", "run", "gunicorn", "base.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
