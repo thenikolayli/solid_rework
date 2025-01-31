@@ -51,10 +51,10 @@ VITE_KEYCLUB_GROUP_NAME = os.getenv("VITE_KEYCLUB_GROUP_NAME")
 
 KEYCLUB_HOURS_SPREADSHEET_ID = os.getenv("KEYCLUB_HOURS_SPREADSHEET_ID")
 KEYCLUB_HOURS_SPREADSHEET_RANGE = json.loads(os.getenv("KEYCLUB_HOURS_SPREADSHEET_RANGE"))
+KEYCLUB_LOG_URL = os.getenv("KEYCLUB_LOG_URL")
 
 GOOGLE_CLIENT_CONFIG = json.loads(os.getenv("KEYCLUB_GOOGLE_CLIENT_CONFIG"))
-# picks the first uri if in debug (localhost one), otherwise second one (domain one)
-GOOGLE_REDIRECT_URI = GOOGLE_CLIENT_CONFIG["web"]["redirect_uris"][0] if DEBUG else GOOGLE_CLIENT_CONFIG["web"]["redirect_uris"][1]
+GOOGLE_REDIRECT_URI = os.getenv("KEYCLUB_GOOGLE_REDIRECT_URI")
 GOOGLE_TOKEN_URI = GOOGLE_CLIENT_CONFIG["web"]["token_uri"]
 GOOGLE_CLIENT_ID = GOOGLE_CLIENT_CONFIG["web"]["client_id"]
 GOOGLE_CLIENT_SECRET = GOOGLE_CLIENT_CONFIG["web"]["client_secret"]
@@ -205,10 +205,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_URL = '/static/' # location where nginx will serve static files from
+STATIC_ROOT = BASE_DIR / 'static' # where static files will be stored on the backend
+# look for static files in frontend dist directory
 STATICFILES_DIRS = [
-    BASE_DIR / "dist",
+   BASE_DIR / "../frontend/dist",
 ]
 
 # Default primary key field type

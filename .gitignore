@@ -1,9 +1,12 @@
 .env
+prod.env
 .idea
 backend/db.sqlite3
 backend/static
-backend/dist
 backend/api/migrations
+backend/.venv
 frontend/src/output.css
+frontend/dist
 certbot
 aws.pem
+enter_server.bat

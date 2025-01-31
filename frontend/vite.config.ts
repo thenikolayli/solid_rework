@@ -12,9 +12,6 @@ export default defineConfig({
     plugins: [solid()],
     // if in production/running in docker, add static prefix to all files (where the static files are stored)
     base: process.env.VITE_IN_DOCKER ? "/static/" : "/",
-    build: {
-        outDir: "../backend/dist",
-    },
     server: {
         port: 3000,
         proxy: {

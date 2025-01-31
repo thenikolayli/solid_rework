@@ -115,15 +115,7 @@ def GoogleOauthCallback(request):
     flow = InstalledAppFlow.from_client_config(client_config=settings.GOOGLE_CLIENT_CONFIG, scopes=settings.GOOGLE_SCOPES, redirect_uri=settings.GOOGLE_REDIRECT_URI, state=state)
     token = json.dumps(flow.fetch_token(code=code))
 
-    if settings.DEBUG: # if in debug mode, redirect to keyclub log page on solidjs local server
-        response = redirect("http://localhost:3000/keyclub/log")
-        response.set_cookie("google_api_token", token,
-                            httponly=settings.JWT_HTTPONLY,
-                            secure=settings.JWT_SECURE,
-                            samesite=settings.JWT_SAMESITE,
-                            path="/", domain=settings.JWT_DOMAIN)
-        return response
-    response = redirect(resolve_url("keyclub/log")) # if in production, redirect to index.html template
+    response = redirect(settings.KEYCLUB_LOG_URL)
     response.set_cookie("google_api_token", token,
                         httponly=settings.JWT_HTTPONLY,
                         secure=settings.JWT_SECURE,
